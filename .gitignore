@@ -1,23 +1,22 @@
+# Ignore vendor directory
 /vendor/
-node_modules/
-npm-debug.log
-yarn-error.log
 
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
+# Ignore Composer lock file
+composer.lock
 
-# Laravel 5 & Lumen specific
-public/storage
-public/hot
-
-# Laravel 5 & Lumen specific with changed public path
-public_html/storage
-public_html/hot
-
-storage/*.key
+# Ignore environment-specific files
 .env
-Homestead.yaml
-Homestead.json
-/.vagrant
-.phpunit.result.cache
+
+# Ignore IDE-specific files
+.idea/
+.vscode/
+
+# Ignore logs and cache files
+/log/
+/cache/
+
+# Ignore build artifacts
+/build/
+
+# Ignore dependency management files
+composer.phar
