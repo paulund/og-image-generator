@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Spatie\Browsershot\Browsershot;
+use Paulund\OgImageGenerator\Actions\HtmlToPng;
 
 class OgImageController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): \Illuminate\Http\Response
     {
         $request->validate([
             'title' => 'required|string',
@@ -19,55 +19,47 @@ class OgImageController extends Controller
         $slugTitle = Str::slug(request('title', 'Title'));
 
         if ($this->hasImage($slugTitle)) {
-            return response($this->getImage($slugTitle), 200, [
-                'Content-Type' => 'image/png',
-            ]);
+            return $this->returnImage($this->getImage($slugTitle));
         }
 
         $html = view('paulund/og-image-generator::image', [
             'title' => request('title', 'Title'),
         ])->render();
 
-        $browsershot = Browsershot::html($html)
-            ->noSandbox()
-            ->showBackground()
-            ->windowSize(1200, 630)
-            ->setScreenshotType('png');
-
-        if (config('chrome.node_path')) {
-            $browsershot->setNodeBinary(config('chrome.node_path'));
-        }
-
-        if (config('chrome.npm_path')) {
-            $browsershot->setNpmBinary(config('chrome.npm_path'));
-        }
-
-        $image = $browsershot->screenshot();
+        $image = app(HtmlToPng::class)->execute($html);
 
         $this->saveImage($slugTitle, $image);
 
+        return $this->returnImage($image);
+    }
+
+    private function returnImage(string $image): \Illuminate\Http\Response
+    {
         return response($image, 200, [
-            'Content-Type' => 'image/png',
+            'Content-Type' => 'image/'.config('og-image-generator.image.mime'),
         ]);
     }
 
-    private function getFilePath($slugTitle)
+    private function getFilePath(string $slugTitle): string
     {
-        return 'public/og-images/'.$slugTitle.'.png';
+        $folder = config('og-image-generator.storage.path');
+        $mimeType = config('og-image-generator.image.mime');
+
+        return $folder.'/'.$slugTitle.'.'.$mimeType;
     }
 
-    private function hasImage($slugTitle)
+    private function hasImage(string $slugTitle): bool
     {
-        return Storage::disk('local')->exists($this->getFilePath($slugTitle));
+        return Storage::disk(config('og-image-generator.storage.disk'))->exists($this->getFilePath($slugTitle));
     }
 
-    private function getImage($slugTitle)
+    private function getImage(string $slugTitle): string
     {
-        return Storage::disk('local')->get($this->getFilePath($slugTitle));
+        return Storage::disk(config('og-image-generator.storage.disk'))->get($this->getFilePath($slugTitle));
     }
 
-    private function saveImage($slugTitle, $image)
+    private function saveImage(string $slugTitle, string $image): void
     {
-        Storage::disk('local')->put($this->getFilePath($slugTitle), $image);
+        Storage::disk(config('og-image-generator.storage.disk'))->put($this->getFilePath($slugTitle), $image);
     }
 }
