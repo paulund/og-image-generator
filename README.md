@@ -10,6 +10,7 @@ You can install the package via composer:
 
 ```bash
 composer require paulund/og-image-generator
+php artisan vendor:publish --provider="Paulund\OgImageGenerator\OgImageGeneratorServiceProvider"
 ```
 
 In the `<head></head>` tag of your application you need to add the meta og-image tag. Pointing to the route
