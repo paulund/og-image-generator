@@ -10,6 +10,7 @@ You can install the package via composer:
 
 ```bash
 composer require paulund/og-image-generator
+php artisan vendor:publish --provider="Paulund\OgImageGenerator\OgImageGeneratorServiceProvider"
 ```
 
 In the `<head></head>` tag of your application you need to add the meta og-image tag. Pointing to the route
@@ -20,17 +21,15 @@ image.
 <meta property="og:image" content="{{ route('og-image', ['title' => $ogTitle ]) }}" />
 ```
 
+## Testing
+```bash
+vendor/bin/testbench workbench:install
+composer check
+```
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Credits
 
