@@ -27,10 +27,6 @@ vendor/bin/testbench workbench:install
 composer check
 ```
 
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
 ## Credits
 
 - [paulund](https://github.com/paulund)
