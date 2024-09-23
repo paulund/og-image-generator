@@ -8,6 +8,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
     use InteractsWithViews;
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -15,6 +16,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         $this->withoutVite();
     }
 
+    #[\Override]
     protected function getPackageProviders($app)
     {
         return [
@@ -22,6 +24,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         ];
     }
 
+    #[\Override]
     protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('app.key', 'base64:'.base64_encode(random_bytes(
