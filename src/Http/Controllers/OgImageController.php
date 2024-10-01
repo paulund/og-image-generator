@@ -10,21 +10,31 @@ use Paulund\OgImageGenerator\Actions\HtmlToPng;
 
 class OgImageController extends Controller
 {
+    private bool $showBlade = false;
+
     public function __invoke(Request $request): \Illuminate\Http\Response
     {
         $request->validate([
             'title' => 'required|string',
         ]);
 
-        $slugTitle = Str::slug(request('title', 'Title'));
+        if ($request->has('showBlade')) {
+            $this->showBlade = true;
+        }
 
-        if ($this->hasImage($slugTitle)) {
+        $slugTitle = Str::slug($request->get('title', 'Title'));
+
+        if ($this->showBlade === false && $this->hasImage($slugTitle)) {
             return $this->returnImage($this->getImage($slugTitle));
         }
 
         $html = view('paulund/og-image-generator::image', [
             'title' => request('title', 'Title'),
         ])->render();
+
+        if ($this->showBlade) {
+            return response($html);
+        }
 
         $image = app(HtmlToPng::class)->execute($html);
 

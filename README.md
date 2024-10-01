@@ -15,6 +15,7 @@ You can install the package via composer:
 
 ```bash
 composer require paulund/og-image-generator
+npm install puppeteer
 php artisan vendor:publish --provider="Paulund\OgImageGenerator\OgImageGeneratorServiceProvider"
 ```
 

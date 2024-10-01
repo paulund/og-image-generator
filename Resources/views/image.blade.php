@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @vite('resources/js/app.js')
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 <div class="border-2 border-gray-800 w-[1200px] h-[630px] bg-gray-900">
