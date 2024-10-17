@@ -58,7 +58,6 @@
         "check": [
             "@php vendor/bin/pint --ansi",
             "@php vendor/bin/phpstan analyse --verbose --ansi",
-            "@rector",
             "@test"
         ],
         "rector": [
