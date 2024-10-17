@@ -30,6 +30,7 @@ class OgImageController extends Controller
 
         $html = view('paulund/og-image-generator::image', [
             'title' => request('title', 'Title'),
+            'styling' => config('og-image-generator.styling'),
         ])->render();
 
         if ($this->showBlade) {
