@@ -9,6 +9,14 @@
 Laravel package to automatically create a og image that the page generates when it's saved to social media.
 ---
 
+<!-- toc -->
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Testing](#testing)
+- [Credits](#credits)
+- [License](#license)
+<!-- tocstop -->
+
 ## Installation
 
 You can install the package via composer:
@@ -26,6 +34,15 @@ image.
 ```
 <meta property="og:image" content="{{ route('og-image', ['title' => $ogTitle ]) }}" />
 ```
+
+## Configuration
+There is no configuration required for this package. The package will automatically start generating Open Graph images for social media sharing.
+
+But you can configure the package by publishing the config file, which will allow you to change the following configs.
+
+- Image mime type - default is png
+- Storage disk - default is local
+- Storage path - default is public/og-images
 
 ## Testing
 ```bash
