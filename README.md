@@ -15,6 +15,7 @@ Laravel package to automatically create a og image that the page generates when 
 - [Testing](#testing)
 - [Credits](#credits)
 - [License](#license)
+- [Tutorial](#tutorial)
 <!-- tocstop -->
 
 ## Installation
@@ -52,9 +53,12 @@ composer check
 
 ## Credits
 
-- [paulund](https://github.com/paulund)
-- [All Contributors](../../contributors)
+- [paulund](https://paulund.co.uk)
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Tutorial
+
+To learn more about how this work you can read the tutorial on [Paulund](https://paulund.co.uk/auto-generate-open-graph-images-laravel)
