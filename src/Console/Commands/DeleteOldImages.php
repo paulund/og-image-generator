@@ -13,9 +13,9 @@ class DeleteOldImages extends Command
     protected $description = 'Delete old images from the storage folder';
 
     public function __construct(
-        #[Config('og-image-generator.storage.disk')] private readonly string $disk,
-        #[Config('og-image-generator.storage.path')] private readonly string $path,
-        #[Config('og-image-generator.storage.lifetime')] private readonly string $lifetime,
+        #[Config('og-image-generator.storage.disk')] private readonly ?string $disk,
+        #[Config('og-image-generator.storage.path')] private readonly ?string $path,
+        #[Config('og-image-generator.storage.lifetime', 90)] private readonly int $lifetime,
     ) {
         parent::__construct();
     }
