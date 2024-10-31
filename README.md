@@ -12,6 +12,7 @@ Laravel package to automatically create a og image that the page generates when 
 <!-- toc -->
 - [Installation](#installation)
 - [Configuration](#configuration)
+- [Delete Old Images](#delete-old-images)
 - [Testing](#testing)
 - [Credits](#credits)
 - [License](#license)
@@ -44,6 +45,18 @@ But you can configure the package by publishing the config file, which will allo
 - Image mime type - default is png
 - Storage disk - default is local
 - Storage path - default is public/og-images
+
+## Delete Old Images
+
+There is a command that you can run to delete all the old images that have been created by the package.
+
+```bash
+php artisan og-image:delete-old-images
+```
+
+This command will delete all the images that are older than 90 days.
+
+This command is added to the Laravel scheduler to run every day.
 
 ## Testing
 ```bash

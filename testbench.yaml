@@ -1,5 +1,5 @@
 providers:
-  # - Workbench\App\Providers\WorkbenchServiceProvider
+  - Paulund\OgImageGenerator\OgImageGeneratorServiceProvider
 
 migrations:
   - workbench/database/migrations
