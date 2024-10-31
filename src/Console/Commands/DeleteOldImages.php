@@ -3,7 +3,6 @@
 namespace Paulund\OgImageGenerator\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Container\Attributes\Config;
 use Illuminate\Support\Facades\Storage;
 
 class DeleteOldImages extends Command
@@ -12,12 +11,18 @@ class DeleteOldImages extends Command
 
     protected $description = 'Delete old images from the storage folder';
 
-    public function __construct(
-        #[Config('og-image-generator.storage.disk')] private readonly ?string $disk,
-        #[Config('og-image-generator.storage.path')] private readonly ?string $path,
-        #[Config('og-image-generator.storage.lifetime', 90)] private readonly int $lifetime,
-    ) {
+    private ?string $disk;
+
+    private ?string $path;
+
+    private int $lifetime;
+
+    public function __construct()
+    {
         parent::__construct();
+        $this->disk = config('og-image-generator.storage.disk');
+        $this->path = config('og-image-generator.storage.path');
+        $this->lifetime = config('og-image-generator.storage.lifetime', 90);
     }
 
     public function handle(): void
