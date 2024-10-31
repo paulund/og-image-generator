@@ -14,6 +14,7 @@ return [
     'storage' => [
         'disk' => 'local',
         'path' => 'public/og-images',
+        'lifetime' => 90,
     ],
 
     /**
