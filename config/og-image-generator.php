@@ -18,6 +18,11 @@ return [
     ],
 
     /**
+     * The view to use for the image
+     */
+    'view' => env('OG_IMAGE_GENERATOR_VIEW', 'paulund/og-image-generator::image'),
+
+    /**
      * CSS classes for the image
      */
     'styling' => [

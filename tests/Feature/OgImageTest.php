@@ -1,9 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
 use Paulund\OgImageGenerator\Actions\HtmlToPng;
 
 beforeEach(function () {
     \Illuminate\Support\Facades\Storage::fake('local');
+    Config::set('og-image-generator', require __DIR__.'/../../config/og-image-generator.php');
 });
 
 test('the og image route returns successful', function () {

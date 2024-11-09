@@ -46,6 +46,31 @@ But you can configure the package by publishing the config file, which will allo
 - Storage disk - default is local
 - Storage path - default is public/og-images
 
+### Config Styling
+By default OG Image Generator comes with tailwinds css installed on the page and you can customise the styling of
+the image by changing the tailwind classes in the config file.
+
+```php
+'styling' => [
+    'background' => 'bg-gray-900',
+    'text' => 'text-white',
+],
+```
+
+## Customise The View
+
+If you'd like you use your own blade view file then you can change the view config in the config file.
+
+```php
+'view' => env('OG_IMAGE_GENERATOR_VIEW', 'paulund/og-image-generator::image'),
+```
+
+Or you can change the view in the `.env` file.
+
+```bash
+OG_IMAGE_GENERATOR_VIEW=your-view-file
+```
+
 ## Delete Old Images
 
 There is a command that you can run to delete all the old images that have been created by the package.
