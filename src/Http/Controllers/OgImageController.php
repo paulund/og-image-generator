@@ -2,7 +2,6 @@
 
 namespace Paulund\OgImageGenerator\Http\Controllers;
 
-use Illuminate\Container\Attributes\Config;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -13,10 +12,18 @@ class OgImageController extends Controller
 {
     private bool $showBlade = false;
 
-    public function __construct(
-        #[Config('og-image-generator.styling')] protected array $styling,
-        #[Config('og-image-generator.view')] protected string $view,
-    ) {}
+    private array $styling;
+
+    private string $view;
+
+    private string $disk;
+
+    public function __construct()
+    {
+        $this->styling = \config('og-image-generator.styling');
+        $this->view = \config('og-image-generator.view');
+        $this->disk = \config('og-image-generator.storage.disk');
+    }
 
     public function __invoke(Request $request): \Illuminate\Http\Response
     {
@@ -67,16 +74,16 @@ class OgImageController extends Controller
 
     private function hasImage(string $slugTitle): bool
     {
-        return Storage::disk(config('og-image-generator.storage.disk'))->exists($this->getFilePath($slugTitle));
+        return Storage::disk($this->disk)->exists($this->getFilePath($slugTitle));
     }
 
     private function getImage(string $slugTitle): string
     {
-        return Storage::disk(config('og-image-generator.storage.disk'))->get($this->getFilePath($slugTitle));
+        return Storage::disk($this->disk)->get($this->getFilePath($slugTitle));
     }
 
     private function saveImage(string $slugTitle, string $image): void
     {
-        Storage::disk(config('og-image-generator.storage.disk'))->put($this->getFilePath($slugTitle), $image);
+        Storage::disk($this->disk)->put($this->getFilePath($slugTitle), $image);
     }
 }
