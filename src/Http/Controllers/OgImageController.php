@@ -2,6 +2,7 @@
 
 namespace Paulund\OgImageGenerator\Http\Controllers;
 
+use Illuminate\Container\Attributes\Config;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -11,6 +12,11 @@ use Paulund\OgImageGenerator\Actions\HtmlToPng;
 class OgImageController extends Controller
 {
     private bool $showBlade = false;
+
+    public function __construct(
+        #[Config('og-image-generator.styling')] protected array $styling,
+        #[Config('og-image-generator.view')] protected string $view,
+    ) {}
 
     public function __invoke(Request $request): \Illuminate\Http\Response
     {
@@ -28,9 +34,9 @@ class OgImageController extends Controller
             return $this->returnImage($this->getImage($slugTitle));
         }
 
-        $html = view('paulund/og-image-generator::image', [
+        $html = view($this->view, [
             'title' => request('title', 'Title'),
-            'styling' => config('og-image-generator.styling'),
+            'styling' => $this->styling,
         ])->render();
 
         if ($this->showBlade) {

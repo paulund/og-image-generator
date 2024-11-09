@@ -45,6 +45,9 @@
         }
     },
     "scripts": {
+        "post-update-cmd": [
+            "@php artisan vendor:publish --provider=\"Paulund\\OgImageGenerator\\OgImageGeneratorServiceProvider\" --force"
+        ],
         "serve": [
             "Composer\\Config::disableProcessTimeout",
             "@build",
