@@ -22,7 +22,7 @@
         "illuminate/http": "^11.0",
         "illuminate/routing": "^11.0",
         "illuminate/support": "^11.0",
-        "spatie/browsershot": "^4.0"
+        "spatie/browsershot": "^5.0"
     },
     "require-dev": {
         "laravel/pint": "^1.17",
