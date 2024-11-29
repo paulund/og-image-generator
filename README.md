@@ -6,10 +6,11 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/paulund/og-image-generator.svg?style=flat-square)](https://packagist.org/packages/paulund/og-image-generator)
 
 ---
-Laravel package to automatically create a og image that the page generates when it's saved to social media.
----
+![OG Image Generator Laravel Package](https://raw.githubusercontent.com/paulund/og-image-generator/refs/heads/main/assets/images/og-image-generator.webp)
 
-<!-- toc -->
+Laravel package to automatically create a og image that the page generates when it's saved to social media.
+
+## Table Of Contents
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Delete Old Images](#delete-old-images)
@@ -17,7 +18,6 @@ Laravel package to automatically create a og image that the page generates when 
 - [Credits](#credits)
 - [License](#license)
 - [Tutorial](#tutorial)
-<!-- tocstop -->
 
 ## Installation
 
