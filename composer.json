@@ -17,19 +17,19 @@
     ],
     "require": {
         "php": "^8.3",
-        "illuminate/container": "^11.0",
-        "illuminate/console": "^11.0",
-        "illuminate/http": "^11.0",
-        "illuminate/routing": "^11.0",
-        "illuminate/support": "^11.0",
+        "illuminate/container": "^12.0",
+        "illuminate/console": "^12.0",
+        "illuminate/http": "^12.0",
+        "illuminate/routing": "^12.0",
+        "illuminate/support": "^12.0",
         "spatie/browsershot": "^5.0"
     },
     "require-dev": {
-        "laravel/pint": "^1.17",
-        "larastan/larastan": "^2.0",
-        "orchestra/testbench": "^9.4",
-        "pestphp/pest": "^3.0",
-        "rector/rector": "^1.2"
+        "laravel/pint": "^1.21",
+        "larastan/larastan": "^v3.1.0",
+        "orchestra/testbench": "^10",
+        "pestphp/pest": "^3.7",
+        "rector/rector": "^2.0"
     },
     "autoload": {
         "psr-4": {
