@@ -17,3 +17,6 @@ updates:
       interval: "weekly"
     labels:
       - "dependencies"
+    allow:
+      - dependency-type: "direct"
+        update-types: [ "version-update:semver-major" ]
