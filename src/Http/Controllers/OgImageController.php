@@ -14,6 +14,8 @@ class OgImageController extends Controller
 
     private array $styling;
 
+    private array $extra;
+
     private string $view;
 
     private string $disk;
@@ -21,6 +23,7 @@ class OgImageController extends Controller
     public function __construct()
     {
         $this->styling = \config('og-image-generator.styling');
+        $this->extra = \config('og-image-generator.extra');
         $this->view = \config('og-image-generator.view');
         $this->disk = \config('og-image-generator.storage.disk');
     }
@@ -41,10 +44,16 @@ class OgImageController extends Controller
             return $this->returnImage($this->getImage($slugTitle));
         }
 
-        $html = view($this->view, [
+        $data = [
             'title' => request('title', 'Title'),
             'styling' => $this->styling,
-        ])->render();
+        ];
+
+        foreach ($this->extra as $parameter) {
+            $data[$parameter] = request($parameter);
+        }
+
+        $html = view($this->view, $data)->render();
 
         if ($this->showBlade) {
             return response($html);
