@@ -2,6 +2,11 @@
 
 return [
     /**
+     * Extra request parameters to pass to the view
+     */
+    'extra' => [],
+
+    /**
      * The image mime type
      */
     'image' => [
