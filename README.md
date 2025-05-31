@@ -45,6 +45,7 @@ But you can configure the package by publishing the config file, which will allo
 - Image mime type - default is png
 - Storage disk - default is local
 - Storage path - default is public/og-images
+- Extra data - you can add extra data to the image that will be passed to the view
 
 ### Config Styling
 By default OG Image Generator comes with tailwinds css installed on the page and you can customise the styling of
@@ -70,6 +71,18 @@ Or you can change the view in the `.env` file.
 ```bash
 OG_IMAGE_GENERATOR_VIEW=your-view-file
 ```
+
+## Extra Data
+If you want to pass extra data to the view then you can add it to the config file.
+
+```php
+'extra' => [
+    'logo'
+    'author'
+],
+```
+
+When this is passed into the request it will be available in the view as `$extra['logo']` and `$extra['author']`.
 
 ## Delete Old Images
 

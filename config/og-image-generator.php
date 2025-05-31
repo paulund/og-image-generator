@@ -29,4 +29,9 @@ return [
         'background' => 'bg-gray-900',
         'text' => 'text-white',
     ],
+
+    /**
+     * Allowed extra parameters to pass to the view
+     */
+    'extra' => [],
 ];
